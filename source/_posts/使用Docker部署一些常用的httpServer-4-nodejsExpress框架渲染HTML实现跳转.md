@@ -1,7 +1,7 @@
 ---
 title: 使用Docker部署一些常用的httpServer(4)--nodejsExpress框架渲染HTML实现跳转
 date: 2019-08-25 13:48:46
-tags:
+tags: [Docker,nodejs,Express]
 ---
 
 # 目标
