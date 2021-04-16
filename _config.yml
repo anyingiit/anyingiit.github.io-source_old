@@ -110,3 +110,4 @@ lazyload:
   enable: true 
   onlypost: false
   loadingImg: /images/loading.svg
+  preloadRatio：3
