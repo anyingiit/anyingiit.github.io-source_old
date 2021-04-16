@@ -1,0 +1,1 @@
+[![GitHub Workflow Status (branch)](https://github.com/anyingiit/anyingiit.github.io-source/actions/workflows/blank.yml/badge.svg)](https://github.com/anyingiit/anyingiit.github.io-source/actions/workflows/blank.yml)
