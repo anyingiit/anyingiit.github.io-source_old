@@ -68,7 +68,10 @@ jobs: #工作流
         run: |
           npm install -g hexo
 
-      - name: Deploy hexo
+      - name: Generate hexo
         run: |
           hexo generate
+
+      - name: Deploy hexo
+        run: |
           hexo deploy
