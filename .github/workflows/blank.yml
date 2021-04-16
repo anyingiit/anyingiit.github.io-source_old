@@ -63,6 +63,10 @@ jobs: #工作流
       - name: Install dependencies
         run: |
           yarn install
+      
+      - name: Install Hexo
+        run: |
+          npm install -g hexo
 
       - name: Deploy hexo
         run: |
