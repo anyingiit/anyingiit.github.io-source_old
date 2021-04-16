@@ -62,14 +62,14 @@ jobs: #工作流
       
       - name: Test Secret
         env:
-          TEST_SECRET: ${{ env.TEST_SECRET }}
+          TEST_SECRET: ${{ secrets.TEST_SECRET }}
         run: |
-          echo "echo\n"
-          echo $TEST_SECRET + "\n"
-          echo env.TEST_SECRET + "\n"
+          echo "echo:"
+          echo $TEST_SECRET
+          echo secrets.TEST_SECRET
           echo "file\n"
           echo $TEST_SECRET > ~/localTest.txt
-          echo $env.TEST_SECRET > ~/envTest.txt
+          echo $secrets.TEST_SECRET > ~/envTest.txt
           cat ~/localTest.txt
           cat ~/envTest.txt
       
