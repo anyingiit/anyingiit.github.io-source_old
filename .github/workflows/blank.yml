@@ -61,6 +61,10 @@ jobs: #工作流
           git config --global user.email $GIT_EMAIL
           cp _config.theme.yml themes/$THEME_DIR_NAME/_config.yml
       
+      - name: Test id_rsa
+        run: |
+          ssh -T git@github.com 
+      
       - name: Test Secret
         env:
           TEST_SECRET: ${{ secrets.TEST_SECRET }}
