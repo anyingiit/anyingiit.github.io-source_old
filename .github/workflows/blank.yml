@@ -34,12 +34,12 @@ jobs: #工作流
           ref: ${{ env.THEME_BRANCH }} # git分支
           path: themes/${{ env.THEME_DIR_NAME }} # 目标路径
           
-      - name: Checkout theme repo # Checkout theme-next-pace
+      - name: Checkout theme-next-pace # Checkout theme-next-pace
         uses: actions/checkout@v2
         with: 
           repository: theme-next/theme-next-pace
           ref: master
-          path: themes/${{ env.THEME_DIR_NAME }}/lib/pace
+          path: themes/${{ env.THEME_DIR_NAME }}/source/lib/pace
 
       - name: Checkout deploy repo
         uses: actions/checkout@v2
