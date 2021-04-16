@@ -54,29 +54,11 @@ jobs: #工作流
           sudo timedatectl set-timezone "Asia/Shanghai"
           mkdir -p ~/.ssh/
           echo "$HEXO_DEPLOY_PRI" | tr -d '\r' > ~/.ssh/id_rsa
-          cat ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.name $GIT_USER
           git config --global user.email $GIT_EMAIL
           cp _config.theme.yml themes/$THEME_DIR_NAME/_config.yml
-      
-      - name: Test id_rsa
-        run: |
-          ssh -T git@github.com 
-      
-      - name: Test Secret
-        env:
-          TEST_SECRET: ${{ secrets.TEST_SECRET }}
-        run: |
-          echo "echo:"
-          echo $TEST_SECRET
-          echo secrets.TEST_SECRET
-          echo "file\n"
-          echo $TEST_SECRET > ~/localTest.txt
-          echo $secrets.TEST_SECRET > ~/envTest.txt
-          cat ~/localTest.txt
-          cat ~/envTest.txt
       
       - name: Install dependencies
         run: |
