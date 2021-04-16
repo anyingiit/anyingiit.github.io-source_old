@@ -78,6 +78,11 @@ jobs: #工作流
       - name: Generate hexo
         run: |
           hexo generate
+      - name: Cp static to public
+        env:
+          THEME_DIR_NAME: ${{ env.THEME_DIR_NAME }}
+        run: |
+          cp themes/$THEME_DIR_NAME/source/images/loading.svg public/
 
       - name: Deploy hexo
         run: |
