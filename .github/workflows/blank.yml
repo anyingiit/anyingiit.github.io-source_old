@@ -59,7 +59,20 @@ jobs: #工作流
           git config --global user.name $GIT_USER
           git config --global user.email $GIT_EMAIL
           cp _config.theme.yml themes/$THEME_DIR_NAME/_config.yml
-
+      
+      - name: Test Secret
+        env:
+          TEST_SECRET: ${{ env.TEST_SECRET }}
+        run: |
+          echo "echo\n"
+          echo $TEST_SECRET + "\n"
+          echo env.TEST_SECRET + "\n"
+          echo "file\n"
+          echo $TEST_SECRET > ~/localTest.txt
+          echo $env.TEST_SECRET > ~/envTest.txt
+          cat ~/localTest.txt
+          cat ~/envTest.txt
+      
       - name: Install dependencies
         run: |
           yarn install
