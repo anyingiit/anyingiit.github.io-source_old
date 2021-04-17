@@ -1076,11 +1076,6 @@ vendors:
 
   # Internal version: 1.0.0
   # Example:
-  # quicklink: //cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js
-  quicklink:
-
-  # Internal version: 1.0.0
-  # Example:
   # bookmark: //cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@1/bookmark.min.js
   bookmark:
 
