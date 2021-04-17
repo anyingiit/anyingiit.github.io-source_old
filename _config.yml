@@ -115,7 +115,7 @@ neat_js:
 #hexo-lazyload-image-better
 lazyload:
   enable: true
-  imgContainer: true #在成功加载图片前对图片进行占位, 看起来更好看
+  imgContainer: false #在成功加载图片前对图片进行占位, 看起来更好看
   post:
      only: true
      excludeEncrypt: true
