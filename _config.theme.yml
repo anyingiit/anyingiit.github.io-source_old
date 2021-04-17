@@ -567,7 +567,7 @@ pangu: false
 # Dependencies: https://github.com/theme-next/theme-next-quicklink
 # For more information: https://github.com/GoogleChromeLabs/quicklink
 quicklink:
-  enable: false
+  enable: true
 
   # Quicklink (quicklink.umd.js script) is loaded on demand.
   # Add `quicklink: true` in Front-matter of the page or post you need.
