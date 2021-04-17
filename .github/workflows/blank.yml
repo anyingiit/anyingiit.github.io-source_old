@@ -81,7 +81,7 @@ jobs: #工作流
 
       - name: Cp static images to public
         run: |
-          cp static/images/* public/images
+          cp source/static/images/* public/images
 
       - name: Deploy hexo
         run: |

@@ -1260,6 +1260,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+hashmap@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.npm.taobao.org/hashmap/download/hashmap-2.4.0.tgz#4bcfe01fbbd2713db9d9254ce936b838412af884"
+  integrity sha1-S8/gH7vScT252SVM6Ta4OEEq+IQ=
+
 he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/he/download/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
@@ -1359,6 +1364,16 @@ hexo-i18n@^0.2.1:
   integrity sha1-hPFBQyvwnYtVjth4xygWS20c1t4=
   dependencies:
     sprintf-js "^1.0.2"
+
+hexo-lazyload-image-better@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.npm.taobao.org/hexo-lazyload-image-better/download/hexo-lazyload-image-better-1.1.4.tgz#c24eea27e6b4c88fa22817e4caac486de0d27cc2"
+  integrity sha1-wk7qJ+a0yI+iKBfkyqxIbeDSfMI=
+  dependencies:
+    clean-css "^4.2.1"
+    hashmap "^2.4.0"
+    image-size "^0.8.3"
+    uglify-js "^3.0.27"
 
 hexo-lazyload-image@^1.0.4:
   version "1.0.10"
@@ -1536,6 +1551,13 @@ ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.npm.taobao.org/ignore/download/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha1-dQ49tYYgh7RzfrrIIH/9HvJ7Jfw=
+
+image-size@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.npm.taobao.org/image-size/download/image-size-0.8.3.tgz?cache=0&sync_timestamp=1618422657851&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fimage-size%2Fdownload%2Fimage-size-0.8.3.tgz#f0b568857e034f29baffd37013587f2c0cad8b46"
+  integrity sha1-8LVohX4DTym6/9NwE1h/LAyti0Y=
+  dependencies:
+    queue "6.0.1"
 
 import-fresh@^3.0.0:
   version "3.3.0"
@@ -2311,6 +2333,13 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.npm.taobao.org/punycode/download/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha1-tYsBCsQMIsVldhbI0sLALHv0eew=
+
+queue@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npm.taobao.org/queue/download/queue-6.0.1.tgz?cache=0&sync_timestamp=1610238310292&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqueue%2Fdownload%2Fqueue-6.0.1.tgz#abd5a5b0376912f070a25729e0b6a7d565683791"
+  integrity sha1-q9WlsDdpEvBwolcp4Lan1WVoN5E=
+  dependencies:
+    inherits "~2.0.3"
 
 range-parser@~1.2.1:
   version "1.2.1"

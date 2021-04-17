@@ -106,8 +106,17 @@ neat_js:
     - '**/index.js'
     
 #lazyload懒加载图片插件
+#lazyload:
+  #enable: true 
+  #onlypost: false
+  #loadingImg: /images/loading.svg
+  #preloadRatio：3
+
+#hexo-lazyload-image-better
 lazyload:
-  enable: true 
-  onlypost: false
-  loadingImg: /images/loading.svg
-  preloadRatio：3
+  enable: true
+  imgContainer: true
+  post:
+     only: true
+     excludeEncrypt: true
+  loadingImg: static/images/loading.svg
