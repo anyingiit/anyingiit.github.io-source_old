@@ -1010,6 +1010,7 @@ canvas_ribbon:
 vendors:
   # Internal path prefix. Please do not edit it.
   _internal: lib
+  quicklink: //cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js
 
   # Internal version: 3.4.1
   # Example:
