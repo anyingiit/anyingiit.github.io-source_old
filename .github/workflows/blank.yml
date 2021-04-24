@@ -16,7 +16,7 @@ env: #环境变量
 
 jobs: #工作流
   build: #编译
-    name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    name: Build AnYing Blog on node ${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,6 +24,25 @@ jobs: #工作流
         node_version: [12.x]
 
     steps: #执行的步骤
+      - name: Write email body
+        env:
+          ACTOR: ${{ github.actor }}
+          RUN_ID: ${{ github.run_id }}
+          JOB_ID: ${{ github.job }}
+        run: |
+          echo "$ACTOR started build AnYing Blog<br>sole_id: $RUN_ID<br>job_id: $JOB_ID" > jobStartedEmailBody.html
+      - name: Send jot started email
+        uses: dawidd6/action-send-mail@master
+        with:
+          serveraddress: smtp.aliyun.com
+          serverport: 465
+          username: ${{ secrets.MAILUSERNAME }}
+          password: ${{ secrets.MAILPASSWORD }}
+          subject: AnYing Blog build stated on ${{ github.job }}
+          body: file://jobStartedEmailBody.html
+          to: anyingiit@aliyun.com
+          from: GitHub Actions
+          content_type: text/html
       - name: Checkout #调用 actions/checkout@v2 可以实现 Checkout 一个 git 仓库到容器。with.repo 不填写默认为Checkout当前仓库。
         uses: actions/checkout@v2
 
