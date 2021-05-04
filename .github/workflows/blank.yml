@@ -39,10 +39,9 @@ jobs: #工作流
           username: ${{ secrets.MAILUSERNAME }}
           password: ${{ secrets.MAILPASSWORD }}
           subject: AnYing Blog build stated on ${{ github.job }}
-          body: file://jobStartedEmailBody.html
+          html_body: file://jobStartedEmailBody.html
           to: anyingiit@aliyun.com
           from: GitHub Actions
-          content_type: text/html
       - name: Checkout #调用 actions/checkout@v2 可以实现 Checkout 一个 git 仓库到容器。with.repo 不填写默认为Checkout当前仓库。
         uses: actions/checkout@v2
 
