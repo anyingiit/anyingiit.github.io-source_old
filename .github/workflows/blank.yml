@@ -67,7 +67,7 @@ jobs: #工作流
           path: .deploy_git
 
       - name: Use Node.js ${{ matrix.node_version }} #构建制定node环境
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node_version }}
 
