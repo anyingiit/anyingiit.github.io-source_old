@@ -43,24 +43,24 @@ jobs: #工作流
           to: anyingiit@aliyun.com
           from: GitHub Actions
       - name: Checkout #调用 actions/checkout@v2 可以实现 Checkout 一个 git 仓库到容器。with.repo 不填写默认为Checkout当前仓库。
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Checkout theme repo # Checkout 主题
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
         with: #将repository的ref分支, Checkout到path
           repository: ${{ env.THEME_REPO }} # git地址
           ref: ${{ env.THEME_BRANCH }} # git分支
           path: themes/${{ env.THEME_DIR_NAME }} # 目标路径
           
       - name: Checkout theme-next-pace # Checkout theme-next-pace
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
         with: 
           repository: theme-next/theme-next-pace
           ref: master
           path: themes/${{ env.THEME_DIR_NAME }}/source/lib/pace
 
       - name: Checkout deploy repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
         with: # 将gitgage页面cheout到path
           repository: ${{ env.DEPLOY_REPO }}
           ref: ${{ env.DEPLOY_BRANCH }}
