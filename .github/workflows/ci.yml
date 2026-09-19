@@ -22,6 +22,13 @@
 #   - the workflow was named `blank.yml`; the README's CI badge (from the
 #     starter template) points at `actions/workflows/ci.yml`, so the repaired
 #     workflow is renamed to `ci.yml` to match it.
+#   - Build kept failing dependency install with "certificate has expired",
+#     reproducible on both Node 18 and Node 22, against Yarn Classic's
+#     default registry mirror (registry.yarnpkg.com) specifically -- fetching
+#     the same packages from registry.npmjs.org (npm's own, actively
+#     maintained registry) works. `.yarnrc` now pins that registry so `yarn
+#     install` never depends on the Yarn team's separate, less-maintained
+#     mirror.
 name: CI
 
 on:
