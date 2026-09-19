@@ -1,0 +1,91 @@
+# Repaired by repocurator (feature 002), replacing .github/workflows/blank.yml:
+#   - that workflow only triggered on `push: branches: [master]`, with no
+#     `pull_request` trigger at all, so a pull request's changes were never
+#     checked before merge.
+#   - "Send jot started email" emailed the repository owner over SMTP using
+#     secrets.MAILUSERNAME/secrets.MAILPASSWORD on every run; sending mail is
+#     an effect outside this repository and does not belong in an automatic
+#     check, so it has been removed along with the "Write email body" step
+#     that only existed to feed it.
+#   - "Deploy hexo" pushed the generated site to the separate
+#     anyingiit/anyingiit.github.io repository over SSH using a deploy key
+#     (secrets.HEXO_DEPLOY_PRI). This repository is an archived, superseded
+#     snapshot of the blog source, so publishing from it would overwrite the
+#     live site with stale content -- and in any case a deploy must never run
+#     automatically inside a check. It has been removed along with the steps
+#     that only existed to support it (checking out the theme and the deploy
+#     target from GitHub, and writing the SSH key to disk).
+#   - the workflow never ran a test of any kind. `scripts/verify-build.mjs`
+#     is new: it runs after `hexo generate` and asserts the generated site
+#     actually exists and rendered every post, instead of trusting a bare
+#     `hexo generate` that could silently produce an empty site.
+#   - the workflow was named `blank.yml`; the README's CI badge (from the
+#     starter template) points at `actions/workflows/ci.yml`, so the repaired
+#     workflow is renamed to `ci.yml` to match it.
+#   - Build kept failing dependency install with "certificate has expired",
+#     reproducible on both Node 18 and Node 22, against Yarn Classic's
+#     default registry mirror (registry.yarnpkg.com) specifically -- fetching
+#     the same packages from registry.npmjs.org (npm's own, actively
+#     maintained registry) works. `.yarnrc` now pins that registry so `yarn
+#     install` never depends on the Yarn team's separate, less-maintained
+#     mirror.
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+# The workflow token is read-only by default.
+# Grant extra permissions to a single job only when that job needs them.
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check that actions are pinned to full commit SHAs
+        shell: bash
+        run: |
+          # Every `uses:` must reference a full 40-character commit SHA followed by a
+          # version comment, for example:
+          #   uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+          # Local actions (./path) and Docker images (docker://) are skipped.
+          set -euo pipefail
+          unpinned="$(grep -RnE '^[[:space:]]*(-[[:space:]]+)?uses:' .github/workflows \
+            | grep -vE "uses:[[:space:]]*['\"]?(\./|docker://)" \
+            | grep -vE "@[0-9a-f]{40}['\"]?[[:space:]]+#[[:space:]]*v?[0-9]" || true)"
+          if [ -n "$unpinned" ]; then
+            echo "::error::Pin these actions to a full-length commit SHA with a version comment:"
+            echo "$unpinned"
+            exit 1
+          fi
+          echo "All actions are pinned to full-length commit SHAs."
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@0a44ba7841725637a19e28fa30b79a866c81b0a6 # v4.0.4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate site and verify output
+        run: npx hexo generate && node scripts/verify-build.mjs
